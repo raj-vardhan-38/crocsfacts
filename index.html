@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crocodile Fun Facts</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e0f7e9;
+            color: #2c3e50;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        button {
+            background-color: #27ae60;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #2ecc71;
+        }
+
+        #factDisplay {
+            font-size: 1.2em;
+            margin-top: 20px;
+            transition: opacity 0.5s ease;
+        }
+
+        .hidden {
+            opacity: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Crocodile Fun Facts</h1>
+        <button id="factButton">Show Random Fact</button>
+        <p id="factDisplay"></p>
+        <button id="shareButton">Share on LinkedIn</button>
+    </div>
+    <script>
+        const facts = [
+            "Crocodiles have been around for over 200 million years, making them one of the oldest living species.",
+            "A crocodile's bite is one of the strongest in the animal kingdom, capable of exerting over 3,700 pounds per square inch.",
+            "Crocodiles can hold their breath underwater for up to an hour.",
+            "They have a special valve in their throat that allows them to open their mouths underwater without drowning.",
+            "Crocodiles can replace each of their 80 teeth up to 50 times in their lifetime.",
+            "The largest crocodile ever recorded was over 23 feet long and weighed around 2,370 pounds.",
+            "Crocodiles have a four-chambered heart, similar to birds and mammals, which is unique among reptiles.",
+            "They can swim at speeds of up to 20 miles per hour.",
+            "Crocodiles have excellent night vision, which helps them hunt in the dark.",
+            "They communicate with each other through a variety of vocalizations, including growls, hisses, and roars.",
+            "Crocodiles are known to use tools; they balance sticks on their snouts to lure birds looking for nesting materials.",
+            "They have a lifespan of 70 to 100 years in the wild.",
+            "Crocodiles are cold-blooded and rely on external heat sources to regulate their body temperature.",
+            "They can leap out of the water to catch prey, using their powerful tails to propel themselves.",
+            "Crocodiles have a special gland in their tongues that excretes excess salt, allowing them to live in saltwater environments."
+        ];
+
+        document.getElementById('factButton').addEventListener('click', () => {
+            const randomIndex = Math.floor(Math.random() * facts.length);
+            const factDisplay = document.getElementById('factDisplay');
+            factDisplay.classList.add('hidden');
+            setTimeout(() => {
+                factDisplay.textContent = facts[randomIndex];
+                factDisplay.classList.remove('hidden');
+            }, 500);
+        });
+
+        document.getElementById('shareButton').addEventListener('click', () => {
+            const fact = document.getElementById('factDisplay').textContent;
+            const url = `https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(window.location.href)}&title=Crocodile%20Fun%20Fact&summary=${encodeURIComponent(fact)}`;
+            window.open(url, '_blank');
+        });
+    </script>
+</body>
+</html>
